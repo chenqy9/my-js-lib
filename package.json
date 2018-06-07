@@ -1,0 +1,11 @@
+{
+  "name": "my-js-lib",
+  "version": "1.0.0",
+  "description": "JavaScript库",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chenqy9",
+  "license": "ISC"
+}
