@@ -8,7 +8,7 @@ const weapon = {}
  * @param {String} name
  * @returns {String} value
  */
-function getUrlParam(name) {
+function getUrlParam (name) {
   var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)') // 构造一个含有目标参数的正则表达式对象
   var r = window.location.search.substr(1).match(reg) // 匹配目标参数
   if (r != null) {
@@ -22,7 +22,7 @@ function getUrlParam(name) {
  * @param {Number} opacity
  * @returns {String}
  */
-function color2Rgba(color, opacity) {
+function color2Rgba (color, opacity) {
   // 十六进制颜色值的正则表达式
   var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/
   // 如果参数不是有效的16进制颜色
@@ -50,7 +50,7 @@ function color2Rgba(color, opacity) {
   }
 }
 
-function formatNumber(num, precision, separator) {
+function formatNumber (num, precision, separator) {
   var parts
   // 判断是否为数字
   if (!isNaN(parseFloat(num)) && isFinite(num)) {
@@ -60,15 +60,15 @@ function formatNumber(num, precision, separator) {
     // 的值变成了 12312312.123456713
     num = Number(num)
     // 处理小数点位数
-    num = (typeof precision !== 'undefined' ? num.toFixed(precision) : num).toString();
+    num = (typeof precision !== 'undefined' ? num.toFixed(precision) : num).toString()
     // 分离数字的小数部分和整数部分
     parts = num.split('.')
     // 整数部分加[separator]分隔, 借用一个著名的正则表达式
-    parts[0] = parts[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + (separator || ','));
+    parts[0] = parts[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + (separator || ','))
 
-    return parts.join('.');
+    return parts.join('.')
   }
-  return NaN;
+  return NaN
 }
 
 /**
@@ -86,12 +86,14 @@ const isAndroid = () => {
 }
 
 weapon.getUrlParam = getUrlParam
+weapon.formatNumber = formatNumber
 weapon.color2Rgba = color2Rgba
 weapon.isIPhone = isIPhone
 weapon.isAndroid = isAndroid
 
 export {
   getUrlParam,
+  formatNumber,
   color2Rgba,
   isIPhone,
   isAndroid
