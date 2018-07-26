@@ -11,4 +11,13 @@
   <li>
     日期格式化：date-fns
   </li>
+  <li>
+    shell命令：shelljs
+  </li>
+  <li>
+    文件操作：fs-extra
+  </li>
+  <li>
+    滑屏插件：swipe / vue-swipe
+  </li>
 </ul>
