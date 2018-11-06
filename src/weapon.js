@@ -8,7 +8,7 @@ const weapon = {}
  * @param {String} name
  * @returns {String} value
  */
-function getUrlParam (name) {
+const getUrlParam = weapon.getUrlParam = (name) => {
   var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)') // 构造一个含有目标参数的正则表达式对象
   var r = window.location.search.substr(1).match(reg) // 匹配目标参数
   if (r != null) {
@@ -22,7 +22,7 @@ function getUrlParam (name) {
  * @param {Number} opacity
  * @returns {String}
  */
-function color2Rgba (color, opacity) {
+const color2Rgba =  weapon.color2Rgba = (color, opacity) => {
   // 十六进制颜色值的正则表达式
   var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/
   // 如果参数不是有效的16进制颜色
@@ -50,7 +50,10 @@ function color2Rgba (color, opacity) {
   }
 }
 
-function formatNumber (num, precision, separator) {
+/**
+ * @description 格式化数字，千分化，保留小数点
+ */
+const formatNumber = weapon.formatNumber =  (num, precision, separator) => {
   var parts
   // 判断是否为数字
   if (!isNaN(parseFloat(num)) && isFinite(num)) {
@@ -74,29 +77,48 @@ function formatNumber (num, precision, separator) {
 /**
  * @description 判断客户端是否iphone
  */
-const isIPhone = () => {
+const isIPhone = weapon.isIPhone = () => {
   return window.navigator.appVersion.match(/iphone/gi)
 }
 
 /**
  * @description 判断客户端是否android
  */
-const isAndroid = () => {
+const isAndroid = weapon.isAndroid = () => {
   return window.navigator.appVersion.match(/android/gi)
 }
 
-weapon.getUrlParam = getUrlParam
-weapon.formatNumber = formatNumber
-weapon.color2Rgba = color2Rgba
-weapon.isIPhone = isIPhone
-weapon.isAndroid = isAndroid
+/**
+ * @description 生成uuid
+ */
+const uuid = weapon.uuid = () => {
+  let d = new Date().getTime()
+  let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    let r = (d + Math.random() * 16) % 16 | 0
+    d = Math.floor(d / 16)
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
+  })
+  return uuid
+}
+
+/**
+ * @description 生成guid
+ */
+const guid = weapon.guid = () => {
+  function S4 () {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+  }
+  return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4())
+}
 
 export {
   getUrlParam,
-  formatNumber,
   color2Rgba,
+  formatNumber,
   isIPhone,
-  isAndroid
+  isAndroid,
+  uuid,
+  guid
 }
 
 export default weapon
